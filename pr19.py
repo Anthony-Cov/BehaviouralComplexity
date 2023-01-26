@@ -1,63 +1,13 @@
-import sys
-LibPath = '../'
-if LibPath in sys.path:
-    print('YES')
-else:
-    print('NO, we\'ll add it now')
-    sys.path.append(LibPath)
-import warnings
-warnings.filterwarnings("ignore")
-
 import os
 import numpy as np
 import pandas as pd
 
-from scipy.linalg import hankel
-from keras.models import Sequential
-from keras.layers import Dense, LSTM, Dropout
-from keras.backend import clear_session
-from Libraries.Util import F1metr, seconds_to_str, LempelZiv
+from nabiim import *
+
 from time import time, ctime
 
-os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"   # see issue #152
-os.environ["CUDA_VISIBLE_DEVICES"] = '0'
-
-
-def GetTrans(user, mcc):
-    if type(mcc)==int:
-        dfc=data[(data.client==user) & (data.mcc==mcc)]
-    else:
-        dfc=data[(data.client==user) & (data.value==mcc)]
-    trans=dfc.groupby('date')['amt'].sum()
-    trans=pd.merge(pd.DataFrame({'date':data.date.unique()}), trans, on='date', how='outer').fillna(value=0.).sort_values(by='date')
-    trans.reset_index(inplace=True)
-    trans.drop('index', axis=1, inplace=True)
-    trans['bin']=np.where(trans.amt.values>10., 1, 0)
-    return trans
-
-def MakeSet(ser, lzc, fwd):
-    H=hankel(ser)
-    X0=H[:-lzc-fwd+1, :lzc]
-    X=[]
-    for i in range(X0.shape[0]-fwd-1):
-        X.append(X0[i:i+fwd+1, :].T)  
-    X=np.array(X)
-    y=H[:-lzc-2*fwd, lzc+fwd:lzc+2*fwd]
-    return X, y
-
-def FitModel(X_train, y_train):
-    clear_session()
-    xs=X_train.shape
-    ys=y_train.shape
-    model = Sequential()
-    model.add(LSTM(xs[1], input_shape=(xs[1], xs[2]), return_sequences = True)) #level
-    model.add(Dropout(0.3))
-    model.add(LSTM(xs[1], input_shape=(xs[1], xs[2]), return_sequences = False))
-    model.add(Dense(xs[1], activation='tanh'))
-    model.add(Dense(ys[1], activation='sigmoid'))
-    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-    model.fit(X_train, y_train, epochs=15, batch_size=1, verbose= 0) 
-    return model
+#os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"   # see issue #152
+#os.environ["CUDA_VISIBLE_DEVICES"] = '0'
 
 datafile='trans19.csv'
 fwd=7
