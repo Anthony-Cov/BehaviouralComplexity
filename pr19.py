@@ -75,7 +75,7 @@ res=pd.DataFrame(columns=['id']+highlab)
 res['id']=['id']*n
 sta=time()
 split=180
-for i in range(100):
+for i in range(n):
     for sssr in highlab: 
         trans=GetTrans(users[i], sssr)
         ser=trans.bin.values
