@@ -14,6 +14,7 @@ in some problems of targeting and marketing.
 </p>
 <H2>Content</H2>
 <ul>
+<li>nabiim.py - predictability-measuring neural network model, Huffman and LZW compression procedures, LZ-complexity calculation, and some utilites for import.
 <li>pr19.py - neural-network forecasting model for a single customer predictability measuring.
 <li>raif_values.zip - archive with raif_values.csv Data set with transactions of Raiffeisen bank preprocessed for methods inplementation.
 </ul>
