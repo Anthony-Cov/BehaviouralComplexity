@@ -13,4 +13,7 @@ training some forecasting models dealing with the whole population, or
 in some problems of targeting and marketing.
 </p>
 <H2>Content</H2>
-pr19.py - neural-network forecasting model for a single customer predictability measuring.
+<ul>
+<li>pr19.py - neural-network forecasting model for a single customer predictability measuring.
+<li>raif_values.zip - archive with raif_values.csv Data set with transactions of Raiffeisen bank preprocessed for methods inplementation.
+</ul>
