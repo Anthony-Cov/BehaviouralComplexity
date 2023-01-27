@@ -9,7 +9,7 @@ from time import time, ctime
 #os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"   # see issue #152
 #os.environ["CUDA_VISIBLE_DEVICES"] = '0'
 
-datafile='trans19.csv'
+datafile='raif_values.csv' #'trans19.csv'
 fwd=7
 
 data=pd.read_csv(datafile)
@@ -47,6 +47,6 @@ for i in range(n):
         del model
         clear_session()
         print('\t',sssr, seconds_to_str(time()-sta), lzc, len(f1) )
-    res.to_csv('res_tm.csv', index=False)
+    res.to_csv('res_raif.csv', index=False)
     print(i, seconds_to_str(time()-sta),res.iloc[i,1:].values.astype(float).round(2))    
 print('Done!', ctime(time()))
