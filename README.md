@@ -14,7 +14,15 @@ in some problems of targeting and marketing.
 </p>
 <H2>Content</H2>
 <ul>
-<li>nabiim.py - predictability-measuring neural network model, Huffman and LZW compression procedures, LZ-complexity calculation, and some utilites for import.
-<li>pr19.py - neural-network forecasting model for a single customer predictability measuring.
-<li>raif_values.zip - archive with raif_values.csv Data set with transactions of Raiffeisen bank preprocessed for methods inplementation.
+<li><b>nabiim.py</b> - predictability-measuring neural network model, Huffman and LZW compression procedures, LZ-complexity calculation, and some utilites for import.
+<li><b>pr19.py</b> - neural-network forecasting model for a single customer predictability measuring.
+<li><b>raif_values.zip</b> - archive with raif_values.csv Data set with transactions of Raiffeisen bank preprocessed for methods inplementation.
+<li><b>cmpl_19.csv</b> - the results of realized predictability estimation and complexity calculations for private data set of 5100 customers.<br>
+<ul>
+<i>id</i> - customer identifier,<br>
+<i>survival, socialization, self_realization, aggregated</i> - hit probability on basic values and aggregated predictability for every single customer,<br>
+<i>Huffman, LZW</i> - behaviour complexity by Huffman and Lempel-Zov-Welch algorithms,<br>
+<i>LZ_survival, LZ_socialization, LZ_self_realization</i> - Lempel-Ziv complexity for basic values separately
 </ul>
+</ul>
+<li><b>ComplPredic.ipynb</b> - experiments for the research.
